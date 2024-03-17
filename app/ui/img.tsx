@@ -34,7 +34,6 @@ export const Img: FC<{
     },
     [file]
   );
-
   if (!local.img) return null;
   const img = local.img;
   const width = img.width / config.pixelRatio;
