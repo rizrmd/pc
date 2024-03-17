@@ -31,17 +31,26 @@ export const Box: FC<{
 
   const children = get(
     child,
-    "props.meta.item.component.props.child.content.childs"
+    "props.meta.item.component.props.child.content"
   );
-  console.log(children);
-  return (
-    <Container
-      width={width}
-      height={height}
-      x={pos.x}
-      y={pos.y}
-      anchor={0}
-      children={<PassProp>{children}</PassProp>}
-    />
-  );
+
+  return <PassProp>{children}</PassProp>;
+  // return (
+  //   <Container
+  //     width={width}
+  //     height={height}
+  //     x={pos.x}
+  //     y={pos.y}
+  //     anchor={0}
+  //     children={
+  //       <Sprite
+  //         image={siteurl("/_file/logo/logo-tt.png")}
+  //         // texture={img}
+  //         x={pos.x}
+  //         y={pos.y}
+  //         anchor={0}
+  //       />
+  //     }
+  //   />
+  // );
 };

@@ -22,15 +22,18 @@ export const Img: FC<{
   left: string;
   right: string;
 }> = ({ file, anchor, top, left, bottom, right }) => {
-  const local = useLocal({ img: null as null | Texture });
-
-  useEffect(() => {
-    (async () => {
-      const img = (await Assets.load(file)) as Texture;
-      local.img = img;
-      local.render();
-    })();
-  }, [file]);
+  const local = useLocal(
+    { img: null as null | Texture, file: "" },
+    async () => {
+      if (local.file !== file) {
+        local.file = file;
+        const img = (await Assets.load(file)) as Texture;
+        local.img = img;
+        local.render();
+      }
+    },
+    [file]
+  );
 
   if (!local.img) return null;
   const img = local.img;
