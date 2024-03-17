@@ -20,7 +20,7 @@ export const Box: FC<{
   bottom: string;
   left: string;
   right: string;
-  child: any;
+  child: any; 
   PassProp: any;
 }> = ({ anchor, top, left, bottom, right, child, PassProp }) => {
   const local = useLocal({});
@@ -29,11 +29,6 @@ export const Box: FC<{
   const height = 0;
   const pos = calcPos({ anchor, top, left, right, bottom, width, height });
 
-  const children = get(
-    child,
-    "props.meta.item.component.props.child.content.childs"
-  );
-
   return (
     <Container
       width={width}
@@ -41,7 +36,7 @@ export const Box: FC<{
       x={pos.x}
       y={pos.y}
       anchor={0}
-      children={<PassProp>{children}</PassProp>}
+      children={<PassProp>{child}</PassProp>}
     />
   );
 };
