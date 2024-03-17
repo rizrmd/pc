@@ -1,0 +1,13 @@
+{
+  "name": "site-7805d72e-fa60-48ad-b706-085a497a3d18",
+  "devDependencies": {
+    "@types/bun": "^1.0.5",
+    "@types/react": "^18.2.56"
+  },
+  "dependencies": {
+    "@pixi/react": "^7.1.1",
+    "@types/lodash.get": "^4.4.9",
+    "lodash.get": "^4.4.2",
+    "pixi.js": "^7.4.0"
+  }
+}
