@@ -9,7 +9,7 @@ type _obj = typeof objects;
 type _plc = typeof places;
 type _evt = typeof events;
 
-type Condition = "default" | "all-clicked"
+type Condition = "default" | "all-objects-touched"
 
 type Face = 'default' | 'sad' | 'angry' | 'happy' | 'cry'
 type Clothes = 'casual' | 'formal-day' | 'formal-night'
@@ -19,7 +19,7 @@ type Dialog = (
   ['[player]', string] |
   [keyof _chr, string] |
   [keyof _obj, string] |
-  { go_to: keyof _plc } |
+  { go_to: keyof _plc | 'city-map' } |
   { start_event: keyof _evt } |
   { menu: Record<string, Dialog> }
 )[]

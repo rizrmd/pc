@@ -22,7 +22,7 @@ export const intro: GameEvent = {
           ['[player]', 'This bed is messed up...'],
           {
             menu: {
-              'Go outside': [
+              'Go to townhall': [
                 ['[player]', "I can't stand this bed"],
                 ['[player]', "Let's get fresh air to the townhall!"],
                 { go_to: 'townhall' }
@@ -42,15 +42,15 @@ export const intro: GameEvent = {
         'default': [
           ['[player]', 'No, not yet...']
         ],
-        'all-clicked': [
+        'all-objects-touched': [
           ['[player]', "Let's get fresh air"],
-          { go_to: 'townhall' }
+          { go_to: 'city-map' }
         ]
       }
     }
   },
   trigger: {
-    'all-clicked': {
+    'all-objects-touched': {
       dialog: [
         ['[player]', 'I want to go outside'],
         ['[player]', 'Door is on the left']
