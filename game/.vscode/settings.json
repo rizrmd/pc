@@ -1,0 +1,7 @@
+{
+    "files.exclude": {
+        "tsconfig.json": true,
+        ".vscode": true,
+        "_system": true
+    }
+}

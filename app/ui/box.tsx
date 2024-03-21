@@ -1,10 +1,9 @@
 import { useLocal } from "@/utils/use-local";
-import { Container, Sprite } from "@pixi/react";
-import { config } from "app/state/config";
+import { Container } from "@pixi/react";
 import { calcPos } from "app/util/position";
-import { Assets, Texture } from "pixi.js";
-import { FC, useEffect } from "react";
-import get from "lodash.get";
+import { DisplayObject, Container as PixiContainer } from "pixi.js";
+import { FC } from "react";
+
 export const Box: FC<{
   anchor:
     | "top left"
@@ -20,23 +19,34 @@ export const Box: FC<{
   bottom: string;
   left: string;
   right: string;
-  child: any; 
+  child: any;
   PassProp: any;
 }> = ({ anchor, top, left, bottom, right, child, PassProp }) => {
-  const local = useLocal({});
+  const local = useLocal({
+    add: 0,
+    ref: null as null | PixiContainer<DisplayObject>,
+  });
 
-  const width = 0;
-  const height = 0;
+  const width = local.ref?.width || 0;
+  const height = local.ref?.height || 0;
   const pos = calcPos({ anchor, top, left, right, bottom, width, height });
 
   return (
     <Container
-      width={width}
-      height={height}
-      x={pos.x}
-      y={pos.y}
+      x={pos.x + (parseInt(left) || 0)}
+      y={pos.y + (parseInt(top) || 0)}
       anchor={0}
-      children={<PassProp>{child}</PassProp>}
+      eventMode="auto"
+      ref={(ref) => {
+        if (ref) {
+          let should_render = !local.ref;
+          local.ref = ref;
+          if (should_render) {
+            local.render();
+          }
+        }
+      }}
+      children={<PassProp parent_render={local.render}>{child}</PassProp>}
     />
   );
 };
