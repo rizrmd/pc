@@ -1,31 +1,32 @@
 import * as characters from '_/_index/characters'
 import * as objects from '_/_index/objects'
 import * as places from '_/_index/places'
+import * as events from '_/_index/events'
 export type _ = {};
 
 type _chr = typeof characters;
 type _obj = typeof objects;
 type _plc = typeof places;
+type _evt = typeof events;
 
 type Condition = "default" | "all-clicked"
 
-type Action = "go-to-town" | "go-to-place"
-
+type Face = 'default' | 'sad' | 'angry' | 'happy' | 'cry'
+type Clothes = 'casual' | 'formal-day' | 'formal-night'
 type Dialog = (
   [keyof _chr, { face?: Face, clothes?: Clothes }, string] |
   ['[player]', { face?: Face, clothes?: Clothes }, string] |
   ['[player]', string] |
   [keyof _chr, string] |
   [keyof _obj, string] |
-  { action: Action, place?: keyof _plc } |
+  { go_to: keyof _plc } |
+  { start_event: keyof _evt } |
   { menu: Record<string, Dialog> }
 )[]
 
-type Face = 'default' | 'sad' | 'angry' | 'happy'
-type Clothes = 'casual' | 'formal-day' | 'formal-night'
 
 declare global {
-  type Place = { name: string; };
+  type Place = { name: string; events: Partial<Record<keyof _evt, Dialog>> };
 
   type Character = {
     name: string;

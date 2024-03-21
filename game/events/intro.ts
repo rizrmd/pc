@@ -2,7 +2,10 @@ export const intro: GameEvent = {
   place: 'inn',
   start: [
     ["theodore", { clothes: 'formal-day' }, "Finally, you're here [player]"],
-    ["theodore", "Welcome to our small town Plymouth."],
+    ["theodore", "Welcome to our small town Plymouth"],
+    ["theodore", "This is your room, make yourself at home"],
+    ["[player]", "Thank you Mr. Theodore"],
+    ["theodore", "You're welcome dear."],
   ],
   objects: {
     drawer: {
@@ -16,15 +19,18 @@ export const intro: GameEvent = {
     bed: {
       trigger: {
         default: [
-          ['[player]', 'Kok berantakan ya...'],
+          ['[player]', 'This bed is messed up...'],
           {
             menu: {
-              'Beresin Kamar': [
-                ['[player]', 'Yuk diberesin'],
-                { action: 'go-to-place', place: 'townhall' }
+              'Go outside': [
+                ['[player]', "I can't stand this bed"],
+                ['[player]', "Let's get fresh air to the townhall!"],
+                { go_to: 'townhall' }
               ],
-              'Jarno ae': [
-                ['[player]', 'Alah males']
+              'Clean the bed': [
+                ['[player]', "Let's clean the bed"],
+                ['bed', "...Stinky Odor..."],
+                ['[player]', "Urgh... the smell is so horrible."],
               ]
             }
           }
@@ -34,18 +40,21 @@ export const intro: GameEvent = {
     door: {
       trigger: {
         'default': [
-          ['door', 'I need to explore of this room']
+          ['[player]', 'No, not yet...']
         ],
         'all-clicked': [
           ['[player]', "Let's get fresh air"],
-          { action: 'go-to-town' }
+          { go_to: 'townhall' }
         ]
       }
     }
   },
   trigger: {
     'all-clicked': {
-      dialog: [['[player]', 'I want to go outside']]
+      dialog: [
+        ['[player]', 'I want to go outside'],
+        ['[player]', 'Door is on the left']
+      ]
     }
   }
 }
