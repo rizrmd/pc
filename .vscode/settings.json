@@ -1,7 +1,13 @@
 {
-    "files.exclude": {
-        "node_modules": true,
-        ".vscode": true,
-        "package-lock.json": true
-    }
+  "files.exclude": {
+    "node_modules": true,
+    ".vscode": true,
+    ".gitignore": true,
+    ".gitmodules": true,
+    "package-lock.json": true
+  },
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "./index.tsx",
+    "./server.ts"
+  ]
 }
